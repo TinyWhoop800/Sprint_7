@@ -22,8 +22,8 @@ class TestCourierLogin:
     @pytest.mark.parametrize("missing_field", ["login", "password"])
     def test_login_missing_required_field(self, courier_api, missing_field):
         with allure.step(f"Генерация данных без поля {missing_field}"):
-            login = generate_unique_login() if missing_field != "login" else None
-            password = generate_unique_password() if missing_field != "password" else None
+            login = generate_unique_login() if missing_field != "login" else ""
+            password = generate_unique_password() if missing_field != "password" else ""
 
         with allure.step("Отправка запроса с неполными данными"):
             response = courier_api.login_courier(login, password)
